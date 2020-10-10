@@ -1,0 +1,41 @@
+#!/usr/bin/expect
+
+set method [lindex $argv 0]
+set host [lindex $argv 1]
+set port [lindex $argv 2]
+set passwd [lindex $argv 3]
+
+if { "$passwd" == "" } {
+    if { "$method" == "SSH" } {
+        spawn ssh $host -p $port
+        expect "*#"
+        interact
+    } else {
+        spawn sftp -oPort=$port $host
+        interact
+    }
+} else {
+    if { "$method" == "SSH" } {
+        spawn ssh $host -p $port
+        #返回信息匹配
+        expect {
+            #第一次ssh连接会提示yes/no,继续
+            "*yes/no" { send "yes\r"; exp_continue}
+            #出现密码提示,发送密码
+            "*password:" { send "$passwd\r" }
+        }
+        #交互模式,用户会停留在远程服务器上面
+        interact
+    } else {
+        spawn sftp -oPort=$port $host
+        #返回信息匹配
+        expect {
+            #第一次ssh连接会提示yes/no,继续
+            "*yes/no" { send "yes\r"; exp_continue}
+            #出现密码提示,发送密码
+            "*password:" { send "$passwd\r" }
+        }
+        #交互模式,用户会停留在远程服务器上面
+        interact
+    }
+}
