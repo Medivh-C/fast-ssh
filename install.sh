@@ -16,7 +16,6 @@ if [ ! -f "$server_conf" ]; then
 else
   read -n 2 -p "Server config file already exists! Would you want to cover it? input y/n : " choice
   if [ "$choice" == "y" ] || [ "$choice" == "Y" ]; then
-    echo 1111111
     rm -rf "$server_conf"
     touch "$server_conf"
   else

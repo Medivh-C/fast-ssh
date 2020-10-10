@@ -9,14 +9,15 @@
  
  The following are the installation steps:  
  1. brew install expect
- 2. ./install.sh
+ 2. git clone https://github.com/Medivh-C/fast-ssh.git
+ 3. cd fast-ssh && ./install.sh
  
 ## Add hosts
- 1. cd ~//fast-ssh/bastion
+ 1. cd ~/fast-ssh/bastion
  2. ./fast-ssh.sh -a
  
 ## Usage
- 1. cd ~//fast-ssh/bastion
+ 1. cd ~/fast-ssh/bastion
  2. ./fast-ssh.sh
  
  
