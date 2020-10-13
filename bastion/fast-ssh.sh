@@ -91,7 +91,7 @@ EOF
 
 version_info() {
   cat <<-EOF
-   mkdir.sh v1_20190318
+   fast-ssh.sh v1.0.0
 EOF
   exit 0
 }
@@ -102,7 +102,6 @@ while [ -n "$1" ]; do #这里通过判断$1是否存在
   -h | --help) help ;;
   -v | --version) version_info ;;
   -a | --add) add ;;
-  -d | --delete) exec ./remote.sh ;;
   --)
     shift
     break
